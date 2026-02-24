@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table (name="macchina")
+@Table (name="macchine")
 public class Macchina extends Veicolo{
 	
 	@Column (

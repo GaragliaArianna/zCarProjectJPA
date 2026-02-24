@@ -1,5 +1,16 @@
 package com.betacom.jpa.dto.outputs;
 
-public class MacchinaDTO {
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString
+public class MacchinaDTO {
+    private Integer numeroPorte;
+
+    private String targa;
+
+    private Integer cc;
 }

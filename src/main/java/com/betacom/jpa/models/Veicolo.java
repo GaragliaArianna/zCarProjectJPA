@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,13 +19,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table (name="veicolo")
+@Table (name="veicoli")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Veicolo {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Integer idVeicolo;
+	private Integer id;
 	
 	@Column (
 			name="numero_ruote",
@@ -31,34 +33,25 @@ public abstract class Veicolo {
 			)
 	private Integer numeroRuote;
 	
-	@Column (
-			name="tipo_veicolo"
-			)
-	private Integer idTipoVeicolo;
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_veicolo", nullable = false)
+	private TipoVeicolo tipoVeicolo;
 	
-	@Column (
-			name="categoria",
-			nullable = false
-			)
-	private String idCategoria;
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", nullable = false)
+	private Categoria categoria;
 	
-	@Column (
-			name="tipo_alimentazione",
-			nullable = false
-			)
-	private String idTipoAlimentazione;
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_alimentazione", nullable = false)
+	private Alimentazione alimentazione;
 	
-	@Column (
-			name="colore",
-			nullable = false
-			)
-	private Integer idColore;
+    @ManyToOne
+    @JoinColumn(name = "id_colore", nullable = false)
+	private Colore colore;
 	
-	@Column (
-			name="marca",
-			nullable = false
-			)
-	private Integer idMarca;
+    @ManyToOne
+    @JoinColumn(name = "id_marca", nullable = false)
+    private Marca marca;
 	
 	@Column (
 			name="modello",

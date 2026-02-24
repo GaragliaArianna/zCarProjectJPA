@@ -1,15 +1,16 @@
 package com.betacom.jpa.dto.outputs;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
+@Builder
 @ToString
-public class MotoDTO {
+public class TipoVeicoloDTO {
 
-    private String targa;
-
-    private Integer cc;
+    private Integer id;
+    private String veicolo;
 }

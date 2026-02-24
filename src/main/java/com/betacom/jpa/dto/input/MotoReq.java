@@ -13,14 +13,8 @@ import lombok.ToString;
 @ToString
 public class MotoReq {
 	
-	private Integer idVeicolo;
-	
-	private Integer idMoto;
-	
-
 	private String targa;
 	
-
 	private Integer cc;
 
 }

@@ -8,12 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MacchinaReq {
+public class AlimentazioneReq {
 
-	private Integer numeroPorte;
-	
-
-	private String targa;
-
-	private Integer cc;
+	private String tipoAlimentazione;
 }

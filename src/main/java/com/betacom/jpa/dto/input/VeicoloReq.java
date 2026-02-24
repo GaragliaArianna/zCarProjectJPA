@@ -15,20 +15,16 @@ import lombok.ToString;
 @ToString
 public class VeicoloReq {
 	
-
-	private Integer idVeicolo;
-	
-
 	private Integer numeroRuote;
 	
 	
 	private Integer idTipoVeicolo;
 	
 
-	private String idCategoria;
+	private Integer idCategoria;
 	
 
-	private String idTipoAlimentazione;
+	private Integer idTipoAlimentazione;
 
 	private Integer idColore;
 	

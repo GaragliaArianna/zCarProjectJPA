@@ -7,9 +7,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MotoDTO {
+public class CategoriaDTO {
+	
+	private Integer idCategoria;
+	private String categoria;
 
-    private String targa;
-
-    private Integer cc;
 }

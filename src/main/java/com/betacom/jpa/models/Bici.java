@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -28,17 +29,13 @@ public class Bici extends Veicolo{
 			)
     private Integer numeroMarce;
 	
-	@Column (
-			name="tipo_freno",
-			nullable = false
-			)
-    private String tipoFreno; 
+	@ManyToOne
+	@JoinColumn(name = "id_tipo_freno", nullable = false)
+	private TipoFreno tipoFreno;
 	
-	@Column (
-			name="tipo_sospensione",
-			nullable = false
-			)
-    private String tipoSospensione; 
+	@ManyToOne
+	@JoinColumn(name = "id_tipo_sospensione", nullable = false)
+    private TipoSospensione TipoSospensione; 
 	
 	@Column (
 			name="pieghevole",

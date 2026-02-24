@@ -9,16 +9,11 @@ import lombok.ToString;
 @ToString
 public class BiciReq {
 
-	private Integer idBici;
-	
     private Integer numeroMarce;
-	
-    private String tipoFreno; 
 
-    private String tipoSospensione; 
+    private Integer idTipoFreno;       
+    private Integer idTipoSospensione; 
 
     private Boolean piegevole;
-    
-    private Integer idVeicolo;
 
 }
