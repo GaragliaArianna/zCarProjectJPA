@@ -16,4 +16,6 @@ public class BiciDTO extends VeicoloDTO{
     private String tipoFreno;       
     private String tipoSospensione;
     private Boolean pieghevole;
+    
+    //
 }

@@ -17,5 +17,5 @@ public class BiciReq extends VeicoloReq{
     private Boolean pieghevole;
     
     
-
+//
 }

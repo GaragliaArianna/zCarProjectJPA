@@ -170,9 +170,9 @@ public class BiciImpl implements IBiciServices {
         biciR.delete(bici);
     }
 
-    // =====================================================
+    // ====================================================
     // FIND BY ID
-    // =====================================================
+    // ====================================================
     @Override
     public BiciDTO findById(Integer id) throws AcademyException {
 

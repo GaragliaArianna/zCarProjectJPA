@@ -67,7 +67,7 @@ public class Mapper {
 				.marca(m.getMarca())
 				.build()).collect(Collectors.toList());
 	}
-	// Converte singola Bici in DTO
+	// Converte singola Bici in DTO.
     public static BiciDTO buildBiciDTO(Bici bici) {
         if (bici == null) return null;
 

@@ -34,7 +34,7 @@ public class BiciController {
         }
     }
 
-    // READ BY ID
+    
     @GetMapping("/{id}")
     public ResponseEntity<BiciDTO> getBiciById(@PathVariable Integer id) {
         try {
