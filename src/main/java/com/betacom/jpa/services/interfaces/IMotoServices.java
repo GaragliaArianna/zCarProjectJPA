@@ -1,5 +1,7 @@
 package com.betacom.jpa.services.interfaces;
 
+import java.util.List;
+
 import com.betacom.jpa.dto.input.BiciReq;
 import com.betacom.jpa.dto.input.MotoReq;
 import com.betacom.jpa.dto.outputs.BiciDTO;
@@ -12,5 +14,6 @@ public interface IMotoServices {
 	void update(MotoReq req) throws AcademyException;
 	void delete(Integer id) throws AcademyException;
 	MotoDTO findById(Integer id) throws Exception;
+	List<MotoDTO> findAll() throws AcademyException;
 
 }

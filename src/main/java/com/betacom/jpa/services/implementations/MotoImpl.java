@@ -1,15 +1,17 @@
 package com.betacom.jpa.services.implementations;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.betacom.jpa.dto.input.MotoReq;
 import com.betacom.jpa.dto.outputs.MotoDTO;
 import com.betacom.jpa.exceptions.AcademyException;
-import com.betacom.jpa.repositories.IAbbonamentoRepository;
+
 import com.betacom.jpa.repositories.IMotoRepository;
-import com.betacom.jpa.repositories.ISocioRepository;
-import com.betacom.jpa.services.interfaces.IAbbonamentoServices;
-import com.betacom.jpa.services.interfaces.IMessagioServices;
+
+import com.betacom.jpa.services.interfaces.IMessaggioServices;
+
 import com.betacom.jpa.services.interfaces.IMotoServices;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +24,7 @@ public class MotoImpl implements IMotoServices{
 
 	private final IMotoRepository motoR;
 	
-	final IMessagioServices msgS;
+	final IMessaggioServices msgS;
 
 	@Override
 	public Integer create(MotoReq req) throws AcademyException {
@@ -44,6 +46,12 @@ public class MotoImpl implements IMotoServices{
 
 	@Override
 	public MotoDTO findById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MotoDTO> findAll() throws AcademyException {
 		// TODO Auto-generated method stub
 		return null;
 	}

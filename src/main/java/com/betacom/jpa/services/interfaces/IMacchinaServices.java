@@ -1,5 +1,7 @@
 package com.betacom.jpa.services.interfaces;
 
+import java.util.List;
+
 import com.betacom.jpa.dto.input.BiciReq;
 import com.betacom.jpa.dto.input.MacchinaReq;
 import com.betacom.jpa.dto.outputs.BiciDTO;
@@ -12,5 +14,6 @@ public interface IMacchinaServices {
 	void update(MacchinaReq req) throws AcademyException;
 	void delete(Integer id) throws AcademyException;
 	MacchinaDTO findById(Integer id) throws Exception;
+	List<MacchinaDTO> findAll() throws AcademyException;
 
 }
