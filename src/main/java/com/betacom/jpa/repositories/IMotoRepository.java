@@ -13,4 +13,5 @@ public interface IMotoRepository extends JpaRepository<Moto, Integer>{
 
 	Optional<Moto> findByTarga(String targa);
 	
+	
 }
