@@ -12,10 +12,12 @@ import com.betacom.jpa.models.Bici;
 import com.betacom.jpa.dto.outputs.AlimentazioneDTO;
 import com.betacom.jpa.dto.outputs.CategoriaDTO;
 import com.betacom.jpa.dto.outputs.ColoreDTO;
+import com.betacom.jpa.dto.outputs.MacchinaDTO;
 import com.betacom.jpa.dto.outputs.MarcaDTO;
 import com.betacom.jpa.models.Alimentazione;
 import com.betacom.jpa.models.Categoria;
 import com.betacom.jpa.models.Colore;
+import com.betacom.jpa.models.Macchina;
 import com.betacom.jpa.models.Marca;
 
 public class Mapper {
@@ -94,6 +96,30 @@ public class Mapper {
                 .map(Mapper::buildBiciDTO)
                 .collect(Collectors.toList());
     }
+    public static MacchinaDTO buildMacchinaDTO(Macchina macchina) {
+ 		if (macchina == null) return null;
+
+ 		return MacchinaDTO.builder()
+ 				.idVeicolo(macchina.getId())
+ 				.numeroRuote(macchina.getNumeroRuote())
+ 				.tipoVeicolo(macchina.getTipoVeicolo() != null ? macchina.getTipoVeicolo().getVeicolo() : null)
+ 				.categoria(macchina.getCategoria() != null ? macchina.getCategoria().getCategoria() : null)
+ 				.tipoAlimentazione(macchina.getAlimentazione() != null ? macchina.getAlimentazione().getAlimentazione() : null)
+ 				.colore(macchina.getColore() != null ? macchina.getColore().getColore() : null)
+ 				.marca(macchina.getMarca() != null ? macchina.getMarca().getMarca() : null)
+ 				.modello(macchina.getModello())
+ 				.annoProduzione(macchina.getAnnoProduzione())
+ 				.numeroPorte(macchina.getNumeroPorte())
+ 				.targa(macchina.getTarga())
+ 				.cc(macchina.getCc())
+ 				.build();
+ 	}
+
+ 	public static List<MacchinaDTO> buildMacchinaDTO(List<Macchina> macchinaList) {
+ 		return macchinaList.stream()
+ 				.map(Mapper::buildMacchinaDTO)
+ 				.collect(Collectors.toList());
+ 	}
 }
 
 
