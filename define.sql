@@ -91,9 +91,12 @@
     alter table freni 
        add constraint UK635mpdjok2tgk9d780hs54mk9 unique (tipo);
 
+<<<<<<< HEAD
+=======
     alter table macchine 
        add constraint UKgxt0l1uuapmsn7rybuq808dsr unique (targa);
 
+>>>>>>> 6ea34c9207422186a7713b18223bd0e9a90573e1
     alter table bici 
        add constraint FKlvo5f3hpqqwcrhw1ca6reeak6 
        foreign key (id_tipo_sospensione) 
