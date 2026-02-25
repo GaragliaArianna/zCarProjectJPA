@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MacchinaDTO {
+public class MacchinaDTO extends VeicoloDTO{
     private Integer numeroPorte;
 
     private String targa;

@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class BiciReq {
+public class BiciReq extends VeicoloReq{
 
     private Integer numeroMarce;
 

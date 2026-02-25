@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MotoDTO {
+public class MotoDTO extends VeicoloDTO{
 
     private String targa;
 

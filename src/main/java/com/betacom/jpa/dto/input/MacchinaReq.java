@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MacchinaReq {
+public class MacchinaReq extends VeicoloReq{
 
 	private Integer numeroPorte;
 	
