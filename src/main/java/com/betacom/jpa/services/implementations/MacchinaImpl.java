@@ -27,7 +27,7 @@ public class MacchinaImpl implements IMacchinaServices{
 
 	@Override
 	public Integer create(MacchinaReq req) throws AcademyException {
-		// TODO Auto-generated method stub
+		log.debug("create");
 		return null;
 	}
 
