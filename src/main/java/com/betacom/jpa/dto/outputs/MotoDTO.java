@@ -10,6 +10,8 @@ import lombok.experimental.SuperBuilder;
 @ToString
 @SuperBuilder
 public class MotoDTO extends VeicoloDTO{
+	
+	private Integer id;
 
     private String targa;
 

@@ -69,7 +69,7 @@ public class Mapper {
 				.marca(m.getMarca())
 				.build()).collect(Collectors.toList());
 	}
-	// Converte singola Bici in DTO
+	// Converte singola Bici in DTO.
     public static BiciDTO buildBiciDTO(Bici bici) {
         if (bici == null) return null;
 
@@ -86,7 +86,7 @@ public class Mapper {
                 .numeroMarce(bici.getNumeroMarce())
                 .tipoFreno(bici.getTipoFreno() != null ? bici.getTipoFreno().getTipo() : null)
                 .tipoSospensione(bici.getTipoSospensione() != null ? bici.getTipoSospensione().getSospensione() : null)
-                .piegevole(bici.getPiegevole())
+                .pieghevole(bici.getPiegevole())
                 .build();
     }
 

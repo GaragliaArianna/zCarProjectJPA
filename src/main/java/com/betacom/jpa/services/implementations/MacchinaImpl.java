@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.betacom.jpa.controllers.AlimentazioneController;
 import com.betacom.jpa.dto.input.MacchinaReq;
 import com.betacom.jpa.dto.outputs.ColoreDTO;
@@ -17,7 +19,7 @@ import com.betacom.jpa.services.interfaces.IMessaggioServices;
 import com.betacom.jpa.utils.Mapper;
 import com.betacom.jpa.utils.VeicoloUtils;
 
-import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,7 +37,7 @@ public class MacchinaImpl implements IMacchinaServices{
 
     
 
-    @Transactional(rollbackOn = AcademyException.class)
+    @Transactional(rollbackFor = AcademyException.class)
     @Override
     public Integer create(MacchinaReq req) throws AcademyException {
 
@@ -72,16 +74,27 @@ public class MacchinaImpl implements IMacchinaServices{
 		
 	}
 
+	@Transactional(rollbackFor = AcademyException.class)
 	@Override
 	public void delete(Integer id) throws AcademyException {
-		// TODO Auto-generated method stub
-		
-	}
+		   log.debug("delete macchina {}", id);
+
+		    Macchina macchina = macchinaR.findById(id)
+		            .orElseThrow(() -> new AcademyException("Macchina non trovata"));
+
+		    macchinaR.delete(macchina);
+
+		    log.debug("macchina {} eliminata correttamente", id);
+		}
 
 	@Override
-	public MacchinaDTO findById(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public MacchinaDTO findById(Integer id) throws AcademyException {
+	    log.debug("findById {}", id);
+
+	    Macchina m = macchinaR.findById(id)
+	            .orElseThrow(() -> new AcademyException("Macchina non trovata: " + id));
+
+	    return Mapper.buildMacchinaDTO(m);
 	}
 
 	@Override
