@@ -84,7 +84,7 @@ public class Mapper {
                 .numeroMarce(bici.getNumeroMarce())
                 .tipoFreno(bici.getTipoFreno() != null ? bici.getTipoFreno().getTipo() : null)
                 .tipoSospensione(bici.getTipoSospensione() != null ? bici.getTipoSospensione().getSospensione() : null)
-                .piegevole(bici.getPiegevole())
+                .pieghevole(bici.getPiegevole())
                 .build();
     }
 
