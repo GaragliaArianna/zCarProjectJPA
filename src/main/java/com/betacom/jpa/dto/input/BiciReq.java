@@ -15,5 +15,7 @@ public class BiciReq extends VeicoloReq{
     private Integer idTipoSospensione; 
 
     private Boolean piegevole;
+    
+    
 
 }

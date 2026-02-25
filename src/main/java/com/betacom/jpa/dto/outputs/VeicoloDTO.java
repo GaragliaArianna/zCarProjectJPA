@@ -2,12 +2,15 @@ package com.betacom.jpa.dto.outputs;
 
 import java.time.LocalDate;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
+@SuperBuilder
 @ToString
 public class VeicoloDTO {
     private Integer idVeicolo;
