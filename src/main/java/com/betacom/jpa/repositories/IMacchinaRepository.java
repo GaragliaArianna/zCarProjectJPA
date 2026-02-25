@@ -8,4 +8,5 @@ import com.betacom.jpa.models.Macchina;
 @Repository
 public interface IMacchinaRepository extends JpaRepository<Macchina, Integer>{
 
+	 boolean existsByTarga(String targa);
 }
