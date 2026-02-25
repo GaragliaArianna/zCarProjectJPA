@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ColoreReq {
-	
+	private Integer id;
 	private String colore;
 
 	

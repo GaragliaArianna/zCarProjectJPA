@@ -9,6 +9,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class AlimentazioneReq {
-
+	private Integer id;
 	private String tipoAlimentazione;
 }

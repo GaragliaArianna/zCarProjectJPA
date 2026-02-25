@@ -1,13 +1,73 @@
 package com.betacom.jpa.utils;
 
 import java.util.List;
+
 import java.util.stream.Collectors;
+
 
 import com.betacom.jpa.dto.outputs.BiciDTO;
 import com.betacom.jpa.models.Bici;
-public class Mapper {
 
-    // Converte singola Bici in DTO
+
+import com.betacom.jpa.dto.outputs.AlimentazioneDTO;
+import com.betacom.jpa.dto.outputs.CategoriaDTO;
+import com.betacom.jpa.dto.outputs.ColoreDTO;
+import com.betacom.jpa.dto.outputs.MarcaDTO;
+import com.betacom.jpa.models.Alimentazione;
+import com.betacom.jpa.models.Categoria;
+import com.betacom.jpa.models.Colore;
+import com.betacom.jpa.models.Marca;
+
+public class Mapper {
+	public static AlimentazioneDTO buildAlimentazioneDTO(Alimentazione alim) {
+		return AlimentazioneDTO.builder()
+				.idAlimentazione(alim.getId())
+				.tipoAlimentazione(alim.getAlimentazione())
+				.build();
+	}
+	public static List<AlimentazioneDTO> buildAlimentazioneDTO(List<Alimentazione> alim) {
+		return alim.stream().map( a-> AlimentazioneDTO.builder()
+				.idAlimentazione(a.getId())
+				.tipoAlimentazione(a.getAlimentazione())
+				.build()).collect(Collectors.toList());
+	}
+	public static CategoriaDTO buildCategoriaDTO(Categoria cat) {
+		return CategoriaDTO.builder()
+				.categoria(cat.getCategoria())
+				.idCategoria(cat.getId())
+				.build();
+	}
+	public static List<CategoriaDTO> buildCategoriaDTO(List<Categoria> cat) {
+		return cat.stream().map( c -> CategoriaDTO.builder()
+				.categoria(c.getCategoria())
+				.idCategoria(c.getId())
+				.build()).collect(Collectors.toList());
+	}
+	public static ColoreDTO buildColoreDTO(Colore col) {
+		return ColoreDTO.builder()
+				.colore(col.getColore())
+				.idColore(col.getIdColore())
+				.build();
+	}
+	public static List<ColoreDTO> buildColoreDTO(List<Colore> col) {
+		return col.stream().map( c -> ColoreDTO.builder()
+				.colore(c.getColore())
+				.idColore(c.getIdColore())
+				.build()).collect(Collectors.toList());
+	}
+	public static MarcaDTO buildMarcaDTO(Marca mar) {
+		return MarcaDTO.builder()
+				.idMarca(mar.getIdMarca())
+				.marca(mar.getMarca())
+				.build();
+	}
+	public static List<MarcaDTO> buildMarcaDTO(List<Marca> mar) {
+		return mar.stream().map(m -> MarcaDTO.builder()
+				.idMarca(m.getIdMarca())
+				.marca(m.getMarca())
+				.build()).collect(Collectors.toList());
+	}
+	// Converte singola Bici in DTO
     public static BiciDTO buildBiciDTO(Bici bici) {
         if (bici == null) return null;
 
@@ -35,4 +95,5 @@ public class Mapper {
                 .collect(Collectors.toList());
     }
 }
+
 
