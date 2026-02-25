@@ -9,6 +9,8 @@ import lombok.ToString;
 @ToString
 public class MotoReq extends VeicoloReq{
 	
+	private Integer id;
+	
 	private String targa;
 	
 	private Integer cc;
