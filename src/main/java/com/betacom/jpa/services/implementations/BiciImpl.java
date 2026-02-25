@@ -18,14 +18,13 @@ import com.betacom.jpa.models.Marca;
 import com.betacom.jpa.models.TipoFreno;
 import com.betacom.jpa.models.TipoSospensione;
 import com.betacom.jpa.models.TipoVeicolo;
-import com.betacom.jpa.repositories.IBiciRepository;
-import com.betacom.jpa.repositories.ITipoFrenoRepository;
 import com.betacom.jpa.services.interfaces.IBiciServices;
 import com.betacom.jpa.services.interfaces.IMessaggioServices;
 import com.betacom.jpa.utils.Mapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import com.betacom.jpa.repositories.*;
 
 @Slf4j
 @Service
@@ -35,6 +34,14 @@ public class BiciImpl implements IBiciServices{
 	private final IBiciRepository biciR;
 	private final IMessaggioServices msgS;
 	private final ITipoFrenoRepository tipoFrenoR;
+	
+    private final ITipoVeicoloRepository tipoVeicoloRepo;
+    private final IMarcaRepository marcaRepo;
+    private final IAlimentazioneRepository alimentazioneRepo;
+    private final IColoreRepository coloreRepo;
+    private final ICategoriaRepository categoriaRepo;
+    
+    private final ITipoSospensioneRepository sospensioneRepo;
 	//private final ITipoSospensioneRepository tipoSospensioneR;
 
 	@Transactional (rollbackFor = AcademyException.class)
@@ -73,22 +80,22 @@ public class BiciImpl implements IBiciServices{
 			TipoFreno tf = tipoFrenoR.findById(req.getIdTipoFreno())
 		            .orElseThrow(() -> new AcademyException("Tipo freno non trovato"));
 
-		    TipoSospensione ts = tipoSospensioneR.findById(req.getIdTipoSospensione())
+		    TipoSospensione ts = sospensioneRepo.findById(req.getIdTipoSospensione())
 		            .orElseThrow(() -> new AcademyException("Tipo sospensione non trovata"));
 
-		    TipoVeicolo tv = tipoVeicoloR.findById(req.getIdTipoVeicolo())
+		    TipoVeicolo tv = tipoVeicoloRepo.findById(req.getIdTipoVeicolo())
 		            .orElseThrow(() -> new AcademyException("Tipo veicolo non trovato"));
 
-		    Categoria cat = categoriaR.findById(req.getIdCategoria())
+		    Categoria cat = categoriaRepo.findById(req.getIdCategoria())
 		            .orElseThrow(() -> new AcademyException("Categoria non trovata"));
 
-		    Alimentazione ta = tipoAlimentazioneR.findById(req.getIdTipoAlimentazione())
+		    Alimentazione ta = alimentazioneRepo.findById(req.getIdTipoAlimentazione())
 		            .orElseThrow(() -> new AcademyException("Tipo alimentazione non trovato"));
 
-		    Colore col = coloreR.findById(req.getIdColore())
+		    Colore col = coloreRepo.findById(req.getIdColore())
 		            .orElseThrow(() -> new AcademyException("Colore non trovato"));
 
-		    Marca marca = marcaR.findById(req.getIdMarca())
+		    Marca marca = marcaRepo.findById(req.getIdMarca())
 		            .orElseThrow(() -> new AcademyException("Marca non trovata"));
 		    
 		    
@@ -108,7 +115,7 @@ public class BiciImpl implements IBiciServices{
 		    bici.setNumeroRuote(req.getNumeroRuote());
 		    bici.setTipoVeicolo(tv);
 		    bici.setCategoria(cat);
-		    bici.setTipoAlimentazione(ta);
+		  //  bici.setTipoAlimentazione(ta);
 		    bici.setColore(col);
 		    bici.setMarca(marca);
 		    bici.setModello(req.getModello());
@@ -142,7 +149,7 @@ public class BiciImpl implements IBiciServices{
 	    }
 
 	    if (req.getIdTipoSospensione() != null) {
-	        TipoSospensione ts = tipoSospensioneR.findById(req.getIdTipoSospensione())
+	        TipoSospensione ts = sospensioneRepo.findById(req.getIdTipoSospensione())
 	                .orElseThrow(() -> new AcademyException("Tipo sospensione non trovata"));
 	        bici.setTipoSospensione(ts);
 	    }
@@ -152,31 +159,31 @@ public class BiciImpl implements IBiciServices{
 	        bici.setNumeroRuote(req.getNumeroRuote());
 
 	    if (req.getIdTipoVeicolo() != null) {
-	        TipoVeicolo tv = tipoVeicoloR.findById(req.getIdTipoVeicolo())
+	        TipoVeicolo tv = tipoVeicoloRepo.findById(req.getIdTipoVeicolo())
 	                .orElseThrow(() -> new AcademyException("Tipo veicolo non trovato"));
 	        bici.setTipoVeicolo(tv);
 	    }
 
 	    if (req.getIdCategoria() != null) {
-	        Categoria cat = categoriaR.findById(req.getIdCategoria())
+	        Categoria cat = categoriaRepo.findById(req.getIdCategoria())
 	                .orElseThrow(() -> new AcademyException("Categoria non trovata"));
 	        bici.setCategoria(cat);
 	    }
 
 	    if (req.getIdTipoAlimentazione() != null) {
-	        Alimentazione ta = tipoAlimentazioneR.findById(req.getIdTipoAlimentazione())
+	        Alimentazione ta = alimentazioneRepo.findById(req.getIdTipoAlimentazione())
 	                .orElseThrow(() -> new AcademyException("Tipo alimentazione non trovata"));
 	        bici.setAlimentazione(ta);
 	    }
 
 	    if (req.getIdColore() != null) {
-	        Colore col = coloreR.findById(req.getIdColore())
+	        Colore col = coloreRepo.findById(req.getIdColore())
 	                .orElseThrow(() -> new AcademyException("Colore non trovato"));
 	        bici.setColore(col);
 	    }
 
 	    if (req.getIdMarca() != null) {
-	        Marca marca = marcaR.findById(req.getIdMarca())
+	        Marca marca = marcaRepo.findById(req.getIdMarca())
 	                .orElseThrow(() -> new AcademyException("Marca non trovata"));
 	        bici.setMarca(marca);
 	    }
