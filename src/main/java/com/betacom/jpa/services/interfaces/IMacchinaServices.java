@@ -11,7 +11,6 @@ import com.betacom.jpa.exceptions.AcademyException;
 public interface IMacchinaServices {
 	
 	Integer create(MacchinaReq req) throws AcademyException;
-	void update(MacchinaReq req) throws AcademyException;
 	void delete(Integer id) throws AcademyException;
 	MacchinaDTO findById(Integer id) throws Exception;
 	List<MacchinaDTO> findAll() throws AcademyException;
@@ -27,5 +26,6 @@ public interface IMacchinaServices {
 	        String alimentazione,
 	        String tipoVeicolo
 			)throws AcademyException;*/
+	void update(Integer id, MacchinaReq req) throws AcademyException;
 
 }
