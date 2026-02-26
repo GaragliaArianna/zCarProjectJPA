@@ -109,7 +109,7 @@ public class Mapper {
                 .build();
     }
 
-    // Converte lista di Bici in lista di DTO
+    // Converte lista di Bici in lista di DTO.
     public static List<BiciDTO> buildBiciDTO(List<Bici> biciList) {
         return biciList.stream()
                 .map(Mapper::buildBiciDTO)

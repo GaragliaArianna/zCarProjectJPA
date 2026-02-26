@@ -43,7 +43,7 @@ public class TipoSospensioneImpl implements ITipoSospensioneService {
     public void update(TipoSospensioneReq req) throws AcademyException {
         log.debug("update TipoSospensione {}", req);
  
-        // TipoSospensioneReq non ha id: aggiorniamo tutti i record o lanciamo eccezione.
+        // TipoSospensioneReq non ha id: aggiorniamo tutti i record o lanciamo eccezione
         throw new AcademyException("Operazione non supportata: aggiungere 'id' al TipoSospensioneReq per effettuare l'update");
     }
  
