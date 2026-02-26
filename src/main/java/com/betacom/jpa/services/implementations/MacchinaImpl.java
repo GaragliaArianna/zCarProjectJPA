@@ -142,7 +142,13 @@ public class MacchinaImpl implements IMacchinaServices{
 	        throw new AcademyException("Il tipo veicolo non può essere modificato");
 
 	    //aggiornamento campi comuni
-	    veicoloUtils.updateVeicoloFromReq(macchina, req);
+	    try {
+	    	 veicoloUtils.updateVeicoloFromReq(macchina, req);
+	    }catch (Exception e) {
+            log.error("Errore in veicoloUtils.buildVeicoloFromReq: {}", e.getMessage(), e);
+            throw e; 
+        }
+	   
 
 	    //aggiornamento campi macchina
 	    if (req.getNumeroPorte() != null) {
@@ -160,7 +166,7 @@ public class MacchinaImpl implements IMacchinaServices{
 	}
 
 	
-	/*
+	
 	@Override
 	public List<MacchinaDTO> find(Integer id, String targa, Integer numeroPorte, Integer cc, String categoria,
 			String colore, String marca, String alimentazione, String tipoVeicolo) throws AcademyException {
@@ -183,7 +189,7 @@ public class MacchinaImpl implements IMacchinaServices{
 		                .build())
 		        .collect(Collectors.toList());
 		
-	}*/
+	}
 
 	
 

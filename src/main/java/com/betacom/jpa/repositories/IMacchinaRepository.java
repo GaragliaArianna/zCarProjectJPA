@@ -1,21 +1,21 @@
 package com.betacom.jpa.repositories;
-
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
+
 import org.springframework.stereotype.Repository;
 
 import com.betacom.jpa.models.Macchina;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 
 @Repository
 public interface IMacchinaRepository extends JpaRepository<Macchina, Integer>{
 
 	 boolean existsByTarga(String targa);
-	 /*
+	 
 	 @Query(name = "macchina.selectByFilter")
 		List<Macchina> searchByFilter(
 		       @Param("id") Integer id,
@@ -27,6 +27,6 @@ public interface IMacchinaRepository extends JpaRepository<Macchina, Integer>{
 		       @Param("marca") String marca,
 		       @Param("alimentazione") String alimentazione,
 		       @Param("tipoVeicolo") String tipoVeicolo
-		);*/
+		);
 	 
 }

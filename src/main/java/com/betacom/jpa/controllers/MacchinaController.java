@@ -1,6 +1,7 @@
 package com.betacom.jpa.controllers;
 
 
+import com.betacom.jpa.dto.input.BiciReq;
 import com.betacom.jpa.dto.input.MacchinaReq;
 import com.betacom.jpa.dto.outputs.BiciDTO;
 import com.betacom.jpa.dto.outputs.MacchinaDTO;
@@ -15,9 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 
@@ -65,6 +69,18 @@ public class MacchinaController {
         } catch (AcademyException e) {
             log.error("Errore findAll macchine: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+	
+    // UPDATE
+    @PutMapping("/update")
+    public ResponseEntity<Void> updateBici(@RequestParam(required=true) Integer id, @RequestBody(required=true) MacchinaReq req) {
+        try {
+            macchinaS.update(id, req);
+            return ResponseEntity.ok().build();
+        } catch (AcademyException e) {
+            log.error("Errore update macchina {}: {}", id, e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 }
