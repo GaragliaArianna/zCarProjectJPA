@@ -98,6 +98,61 @@ public class VeicoloUtils {
         checkNotNull(value, msg);
         return value;
     }
+    
+    @Transactional(rollbackFor = AcademyException.class)
+    public <T extends Veicolo> void updateVeicoloFromReq(T veicolo, VeicoloReq req) 
+            throws AcademyException {
+
+
+        if (req.getAnnoProduzione() != null) {
+            checkAnnoProduzione(req.getAnnoProduzione());  // controlla validità anno
+            veicolo.setAnnoProduzione(req.getAnnoProduzione());
+        }
+
+      
+        if (req.getNumeroRuote() != null) {
+            checkNumeroRuote(req.getNumeroRuote());  // controlla validità numero ruote
+            veicolo.setNumeroRuote(req.getNumeroRuote());
+        }
+
+
+        if (req.getModello() != null) {
+            checkNotNull(req.getModello(), "Modello non valido");
+            veicolo.setModello(req.getModello());
+        }
+
+ 
+        if (req.getIdMarca() != null) {
+            veicolo.setMarca(
+                    marcaRepo.findById(req.getIdMarca())
+                            .orElseThrow(() -> new AcademyException("Marca non trovata"))
+            );
+        }
+
+        if (req.getIdTipoAlimentazione() != null) {
+            veicolo.setAlimentazione(
+                    alimentazioneRepo.findById(req.getIdTipoAlimentazione())
+                            .orElseThrow(() -> new AcademyException("Alimentazione non trovata"))
+            );
+        }
+
+        if (req.getIdColore() != null) {
+            veicolo.setColore(
+                    coloreRepo.findById(req.getIdColore())
+                            .orElseThrow(() -> new AcademyException("Colore non trovato"))
+            );
+        }
+
+        if (req.getIdCategoria() != null) {
+            veicolo.setCategoria(
+                    categoriaRepo.findById(req.getIdCategoria())
+                            .orElseThrow(() -> new AcademyException("Categoria non trovata"))
+            );
+        }
+
+    }
+    
+
 }
 
 
