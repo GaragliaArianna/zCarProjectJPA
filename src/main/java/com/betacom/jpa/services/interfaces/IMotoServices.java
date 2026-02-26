@@ -15,5 +15,14 @@ public interface IMotoServices {
 	void delete(Integer id) throws AcademyException;
 	MotoDTO findById(Integer id) throws Exception;
 	List<MotoDTO> findAll() throws AcademyException;
-
+	List<MotoDTO> find(
+			Integer id,
+	        String targa,
+	        Integer cc,
+	        String categoria,
+	        String colore,
+	        String marca,
+	        String alimentazione,
+	        String tipoVeicolo
+			)throws AcademyException;
 }
