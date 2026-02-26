@@ -103,10 +103,8 @@ public class MacchinaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
-}
 
-
-    @GetMapping("/list")
+	    @GetMapping("/list")
     public ResponseEntity<Object> list(
     		@RequestParam(required=false) Integer id,
     		@RequestParam(required=false)String targa,
@@ -128,3 +126,9 @@ public class MacchinaController {
     		status = HttpStatus.BAD_REQUEST;
     	}
     	return ResponseEntity.status(status).body(obj);
+    	
+    }
+}
+
+
+  
