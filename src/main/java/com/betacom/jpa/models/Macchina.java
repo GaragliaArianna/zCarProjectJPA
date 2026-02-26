@@ -29,7 +29,8 @@ public class Macchina extends Veicolo{
 	
 	@Column (
 			name="targa",
-			nullable = false
+			nullable = false,
+			unique=true
 			)
 	private String targa;
 	

@@ -47,7 +47,7 @@ public class MotoImpl implements IMotoServices{
 		return motoR.save(mot).getId();
 	}
 	
-	
+	 
 	@Transactional (rollbackFor = AcademyException.class)
 	@Override
 	public void update (MotoReq req) throws AcademyException {
@@ -99,16 +99,17 @@ public class MotoImpl implements IMotoServices{
 
 	@Override
 	public List<MotoDTO> findAll() throws AcademyException {
-		log.debug("findAll");
-		List<Moto> lM = motoR.findAll();
-		
-		return lM.stream()
-				.map(m-> MotoDTO.builder()
-						.id(m.getId())
-						.targa(m.getTarga())
-						.cc(m.getCc())
-						.build()
-						).toList();
+	    log.debug("findAll");
+
+	    List<Moto> lM = motoR.findAll();
+
+	    return lM.stream()
+	            .map(m -> (MotoDTO) MotoDTO.builder()
+	                    .id(m.getId())
+	                    .targa(m.getTarga())
+	                    .cc(m.getCc())
+	                    .build()
+	            )
+	            .toList();
 	}
-	
 }

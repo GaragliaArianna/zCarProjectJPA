@@ -8,6 +8,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CategoriaReq {
-
+	private Integer id;
 	private String categoria;
 }

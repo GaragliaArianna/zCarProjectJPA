@@ -10,7 +10,7 @@ import com.betacom.jpa.exceptions.AcademyException;
 public interface IBiciServices {
 	
 	Integer create(BiciReq req) throws AcademyException;
-	void update(BiciReq req) throws AcademyException;
+	void update(Integer id, BiciReq req) throws AcademyException;
 	void delete(Integer id) throws AcademyException;
 	BiciDTO findById(Integer id) throws Exception;
 	List<BiciDTO> findAll() throws AcademyException;
