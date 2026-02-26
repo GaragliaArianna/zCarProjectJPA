@@ -12,7 +12,8 @@ import com.betacom.jpa.exceptions.AcademyException;
 import com.betacom.jpa.models.TipoSospensione;
 import com.betacom.jpa.repositories.ITipoSospensioneRepository;
 import com.betacom.jpa.services.interfaces.ITipoSospensioneService;
- 
+import com.betacom.jpa.utils.Mapper;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
  
@@ -42,7 +43,7 @@ public class TipoSospensioneImpl implements ITipoSospensioneService {
     public void update(TipoSospensioneReq req) throws AcademyException {
         log.debug("update TipoSospensione {}", req);
  
-        // TipoSospensioneReq non ha id: aggiorniamo tutti i record o lanciamo eccezione.
+        // TipoSospensioneReq non ha id: aggiorniamo tutti i record o lanciamo eccezione
         throw new AcademyException("Operazione non supportata: aggiungere 'id' al TipoSospensioneReq per effettuare l'update");
     }
  
@@ -60,38 +61,23 @@ public class TipoSospensioneImpl implements ITipoSospensioneService {
     @Override
     public TipoSospensioneDTO findById(Integer id) throws Exception {
         log.debug("findById TipoSospensione {}", id);
- 
+
         TipoSospensione ts = tipoSospensioneR.findById(id)
                 .orElseThrow(() -> new AcademyException("Tipo sospensione non trovata"));
- 
-        return toDTO(ts);
+
+        return Mapper.buildTipoSospensioneDTO(ts);
     }
- /*
+    
+    
     @Override
     public List<TipoSospensioneDTO> findAll() throws AcademyException {
         log.debug("findAll TipoSospensione");
- 
-        return tipoSospensioneR.findAll()
-                .stream()
-                .map(ts -> {
-                    TipoSospensioneDTO req = new TipoSospensioneDTO();
-                    req.setSospensione(ts.getSospensione());
-                    return req;
-                })
-                .collect(Collectors.toList());
-    }*/
- 
-    // -------------------------------------------------------
-    private TipoSospensioneDTO toDTO(TipoSospensione ts) {
-        return TipoSospensioneDTO.builder()
-                .id(ts.getIdSospensione())
-                .sospensione(ts.getSospensione())
-                .build();
+
+        return Mapper.buildTipoSospensioneDTO(
+                tipoSospensioneR.findAll()
+        );
     }
 
-	@Override
-	public List<TipoSospensioneDTO> findAll() throws AcademyException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
 }

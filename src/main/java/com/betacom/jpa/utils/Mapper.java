@@ -14,11 +14,13 @@ import com.betacom.jpa.dto.outputs.CategoriaDTO;
 import com.betacom.jpa.dto.outputs.ColoreDTO;
 import com.betacom.jpa.dto.outputs.MacchinaDTO;
 import com.betacom.jpa.dto.outputs.MarcaDTO;
+import com.betacom.jpa.dto.outputs.TipoSospensioneDTO;
 import com.betacom.jpa.models.Alimentazione;
 import com.betacom.jpa.models.Categoria;
 import com.betacom.jpa.models.Colore;
 import com.betacom.jpa.models.Macchina;
 import com.betacom.jpa.models.Marca;
+import com.betacom.jpa.models.TipoSospensione;
 
 public class Mapper {
 	public static AlimentazioneDTO buildAlimentazioneDTO(Alimentazione alim) {
@@ -69,6 +71,23 @@ public class Mapper {
 				.marca(m.getMarca())
 				.build()).collect(Collectors.toList());
 	}
+	
+	public static TipoSospensioneDTO buildTipoSospensioneDTO(TipoSospensione ts) {
+	    if (ts == null) return null;
+
+	    return TipoSospensioneDTO.builder()
+	            .id(ts.getIdSospensione())
+	            .sospensione(ts.getSospensione())
+	            .build();
+	}
+	
+	public static List<TipoSospensioneDTO> buildTipoSospensioneDTO(List<TipoSospensione> list) {
+	    return list.stream()
+	            .map(Mapper::buildTipoSospensioneDTO)
+	            .collect(Collectors.toList());
+	}
+	
+	
 	// Converte singola Bici in DTO.
     public static BiciDTO buildBiciDTO(Bici bici) {
         if (bici == null) return null;
@@ -90,7 +109,7 @@ public class Mapper {
                 .build();
     }
 
-    // Converte lista di Bici in lista di DTO
+    // Converte lista di Bici in lista di DTO.
     public static List<BiciDTO> buildBiciDTO(List<Bici> biciList) {
         return biciList.stream()
                 .map(Mapper::buildBiciDTO)
