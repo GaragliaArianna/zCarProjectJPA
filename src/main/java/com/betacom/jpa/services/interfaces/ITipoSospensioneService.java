@@ -14,5 +14,5 @@ public interface ITipoSospensioneService {
 	void update(TipoSospensioneReq req) throws AcademyException;
 	void delete(Integer id) throws AcademyException;
 	TipoSospensioneDTO findById(Integer id) throws Exception;
-	List<TipoSospensioneReq> findAll() throws AcademyException;
+	List<TipoSospensioneDTO> findAll() throws AcademyException;
 }
