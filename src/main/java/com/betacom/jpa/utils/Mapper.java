@@ -149,6 +149,114 @@ public class Mapper {
  				.map(Mapper::buildMacchinaDTO)
  				.collect(Collectors.toList());
  	}
+
+	//VEICOLO
+ 	public static List<VeicoloDTO> buildVeicoloDTO(List<Veicolo> veicoli){
+ 		return veicoli.stream().map(v ->{
+			if(v instanceof Macchina) {
+				Macchina m = (Macchina) v;
+				 return MacchinaDTO.builder()
+	                        .idVeicolo(m.getId())
+	                        .modello(m.getModello())
+	                        .annoProduzione(m.getAnnoProduzione())
+	                        .numeroRuote(m.getNumeroRuote())
+	                        .targa(m.getTarga())
+	                        .numeroPorte(m.getNumeroPorte())
+	                        .cc(m.getCc())
+	                        .colore(m.getColore().getColore())
+	                        .categoria(m.getCategoria().getCategoria())
+	                        .tipoAlimentazione(m.getAlimentazione().getAlimentazione())
+	                        .marca(m.getMarca().getMarca())
+	                        
+	                        .build();
+			}
+			if(v instanceof Moto) {
+				Moto m = (Moto) v;
+				return MotoDTO.builder()
+						.id(m.getId())
+						.modello(m.getModello())
+                        .annoProduzione(m.getAnnoProduzione())
+                        .numeroRuote(m.getNumeroRuote())
+                        .targa(m.getTarga())
+                        .cc(m.getCc())
+                        .colore(m.getColore().getColore())
+                        .categoria(m.getCategoria().getCategoria())
+                        .tipoAlimentazione(m.getAlimentazione().getAlimentazione())
+                        .marca(m.getMarca().getMarca())
+                        .build();	
+			}
+			if(v instanceof Bici) {
+				Bici b = (Bici) v;
+				return BiciDTO.builder()
+						.idVeicolo(b.getId())
+						.modello(b.getModello())
+                        .annoProduzione(b.getAnnoProduzione())
+                        .numeroRuote(b.getNumeroRuote())
+                        .tipoSospensione(b.getTipoSospensione().getSospensione())
+                        .tipoFreno(b.getTipoFreno().getTipo())
+                        .colore(b.getColore().getColore())
+                        .categoria(b.getCategoria().getCategoria())
+                        .tipoAlimentazione(b.getAlimentazione().getAlimentazione())
+                        .marca(b.getMarca().getMarca())
+                        .build();	
+			}
+			return null;
+		}).collect(Collectors.toList());
+ 	}
+ 	
+ 	
+ 	public static VeicoloDTO buildVeicoloDTO(Veicolo v){
+ 		
+			if(v instanceof Macchina) {
+				Macchina m = (Macchina) v;
+				 return MacchinaDTO.builder()
+	                        .idVeicolo(m.getId())
+	                        .modello(m.getModello())
+	                        .annoProduzione(m.getAnnoProduzione())
+	                        .numeroRuote(m.getNumeroRuote())
+	                        .targa(m.getTarga())
+	                        .numeroPorte(m.getNumeroPorte())
+	                        .cc(m.getCc())
+	                        .colore(m.getColore().getColore())
+	                        .categoria(m.getCategoria().getCategoria())
+	                        .tipoAlimentazione(m.getAlimentazione().getAlimentazione())
+	                        .marca(m.getMarca().getMarca())
+	                        
+	                        .build();
+			}
+			if(v instanceof Moto) {
+				Moto m = (Moto) v;
+				return MotoDTO.builder()
+						.id(m.getId())
+						.modello(m.getModello())
+                        .annoProduzione(m.getAnnoProduzione())
+                        .numeroRuote(m.getNumeroRuote())
+                        .targa(m.getTarga())
+                        .cc(m.getCc())
+                        .colore(m.getColore().getColore())
+                        .categoria(m.getCategoria().getCategoria())
+                        .tipoAlimentazione(m.getAlimentazione().getAlimentazione())
+                        .marca(m.getMarca().getMarca())
+                        .build();	
+			}
+			if(v instanceof Bici) {
+				Bici b = (Bici) v;
+				return BiciDTO.builder()
+						.idVeicolo(b.getId())
+						.modello(b.getModello())
+                        .annoProduzione(b.getAnnoProduzione())
+                        .numeroRuote(b.getNumeroRuote())
+                        .tipoSospensione(b.getTipoSospensione().getSospensione())
+                        .tipoFreno(b.getTipoFreno().getTipo())
+                        .colore(b.getColore().getColore())
+                        .categoria(b.getCategoria().getCategoria())
+                        .tipoAlimentazione(b.getAlimentazione().getAlimentazione())
+                        .marca(b.getMarca().getMarca())
+                        .build();	
+			}
+			return null;
+		
+ 	}
 }
 
 
