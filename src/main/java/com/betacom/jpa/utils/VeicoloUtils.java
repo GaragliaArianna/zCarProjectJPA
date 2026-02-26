@@ -18,6 +18,11 @@ public class VeicoloUtils {
     private final IAlimentazioneRepository alimentazioneRepo;
     private final IColoreRepository coloreRepo;
     private final ICategoriaRepository categoriaRepo;
+    
+    private static final int MIN_NUM_RUOTE=2;
+    private static final int MAX_NUM_RUOTE=6;
+    
+    private static final int MIN_ANNO=1970;
 
     public VeicoloUtils(ITipoVeicoloRepository tipoVeicoloRepo,
                         IMarcaRepository marcaRepo,
@@ -39,22 +44,22 @@ public class VeicoloUtils {
         checkNotNull(data, "Anno di produzione non caricato");
         int anno = data.getYear();
         int annoOggi = LocalDate.now().getYear();
-        if (anno < 1970 || anno > annoOggi)
-            throw new AcademyException("Anno di produzione non valido. Deve essere tra 1970 e " + annoOggi);
+        if (anno < MIN_ANNO || anno > annoOggi)
+            throw new AcademyException("Anno di produzione non valido. Deve essere tra "+ MIN_ANNO + " e " + annoOggi);
         return anno;
     }
 
     private int checkNumeroRuote(Integer ruote) throws AcademyException {
         checkNotNull(ruote, "Numero ruote non caricato");
-        if (ruote < 2 || ruote > 10)
-            throw new AcademyException("Numero ruote non valido. Deve essere tra 2 e 10");
+        if (ruote < MIN_NUM_RUOTE || ruote > MAX_NUM_RUOTE)
+        	throw new AcademyException("Numero porte non valido. Deve essere tra "+ MIN_NUM_RUOTE+ " e "+  MAX_NUM_RUOTE);
         return ruote;
     }
 
     @Transactional(rollbackFor = AcademyException.class)
     public <T extends Veicolo> T buildVeicoloFromReq(T veicolo, VeicoloReq req) throws AcademyException {
 
-        // ------------------- controlli e assegnazioni generali -------------------
+
         veicolo.setTipoVeicolo(tipoVeicoloRepo.findById(
                 checkNotNullReturn(req.getIdTipoVeicolo(), "Tipo veicolo non caricato"))
                 .orElseThrow(() -> new AcademyException("Tipo veicolo non trovato")));
@@ -96,57 +101,3 @@ public class VeicoloUtils {
 }
 
 
-/*
-    @Transactional(rollbackFor = AcademyException.class)
-    public Veicolo buildVeicoloFromReq(VeicoloReq req) throws AcademyException {
-    	
-        Veicolo veicolo = new Veicolo();
-
-        if (req.getIdTipoVeicolo() == null)
-            throw new AcademyException("Tipo veicolo non caricato");
-        veicolo.setTipoVeicolo(tipoVeicoloRepo.findById(req.getIdTipoVeicolo())
-                .orElseThrow(() -> new AcademyException("Tipo veicolo non trovato")));
-
-        if (req.getIdMarca() == null)
-            throw new AcademyException("Marca non caricata");
-        veicolo.setMarca(marcaRepo.findById(req.getIdMarca())
-                .orElseThrow(() -> new AcademyException("Marca non trovata")));
-
-        if (req.getIdTipoAlimentazione() == null)
-            throw new AcademyException("Alimentazione non caricata");
-        veicolo.setAlimentazione(alimentazioneRepo.findById(req.getIdTipoAlimentazione())
-                .orElseThrow(() -> new AcademyException("Alimentazione non trovata")));
-
-        if (req.getIdColore() == null)
-            throw new AcademyException("Colore non caricato");
-        veicolo.setColore(coloreRepo.findById(req.getIdColore())
-                .orElseThrow(() -> new AcademyException("Colore non trovato")));
-
-        if (req.getIdCategoria() == null)
-            throw new AcademyException("Categoria non caricata");
-        veicolo.setCategoria(categoriaRepo.findById(req.getIdCategoria())
-                .orElseThrow(() -> new AcademyException("Categoria non trovata")));
-        
-        
-        if (req.getAnnoProduzione() == null)
-            throw new AcademyException("Anno di produzione non caricato");
-        int anno = req.getAnnoProduzione().getYear();
-        int annoOggi = java.time.LocalDate.now().getYear();
-        if (anno < 1970 || anno > annoOggi)
-            throw new AcademyException("Anno di produzione non valido. Deve essere tra 1970 e " + annoOggi);
-
-        if (req.getNumeroRuote() == null)
-            throw new AcademyException("Numero ruote non caricato");
-        if (req.getNumeroRuote() < 2 || req.getNumeroRuote() > 10)
-            throw new AcademyException("Numero ruote non valido. Deve essere tra 2 e 10");
-
-        veicolo.setModello(req.getModello());
-   
-        checkAnnoProduzione(req.getAnnoProduzione());
-        veicolo.setAnnoProduzione(req.getAnnoProduzione());
-
-        checkNumeroRuote(req.getNumeroRuote());
-        veicolo.setNumeroRuote(req.getNumeroRuote());
-
-        return veicolo;
-    }*/

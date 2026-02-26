@@ -12,6 +12,7 @@ import com.betacom.jpa.dto.outputs.ColoreDTO;
 import com.betacom.jpa.dto.outputs.MacchinaDTO;
 import com.betacom.jpa.exceptions.AcademyException;
 import com.betacom.jpa.models.Macchina;
+import com.betacom.jpa.models.TipoVeicolo;
 import com.betacom.jpa.repositories.IMacchinaRepository;
 
 import com.betacom.jpa.services.interfaces.IMacchinaServices;
@@ -33,16 +34,17 @@ public class MacchinaImpl implements IMacchinaServices{
 
 	private final IMessaggioServices msgS;
 	
-	private VeicoloUtils veicoloUtils;
+	private final VeicoloUtils veicoloUtils;
 
+    private static final int MIN_NUM_PORTE=2;
+    private static final int MAX_NUM_PORTE=4;
     
-
+	
     @Transactional(rollbackFor = AcademyException.class)
     @Override
     public Integer create(MacchinaReq req) throws AcademyException {
 
         log.debug("create Macchina {}", req);
-
    
         if (req.getTarga() == null || req.getTarga().isBlank())
             throw new AcademyException("Targa non caricata");
@@ -52,22 +54,36 @@ public class MacchinaImpl implements IMacchinaServices{
 
  
         Macchina macchina = new Macchina();
-        veicoloUtils.buildVeicoloFromReq(macchina, req);
-
-     
-        if (req.getNumeroPorte() == null)
-            throw new AcademyException("Numero porte non caricato");
+        try {
+            veicoloUtils.buildVeicoloFromReq(macchina, req);
+        } catch (Exception e) {
+            log.error("Errore in veicoloUtils.buildVeicoloFromReq: {}", e.getMessage(), e);
+            throw e; 
+        }
+        
+        log.debug("Macchina da salvare: {}", macchina);
 
         if (req.getCc() == null)
             throw new AcademyException("Cilindrata non caricata");
 
  
         macchina.setNumeroPorte(req.getNumeroPorte());
+        checkNumeroPorte(req.getNumeroPorte());
+        
         macchina.setCc(req.getCc());
         macchina.setTarga(req.getTarga());
 
         return macchinaR.save(macchina).getId();
     }
+    
+    private int checkNumeroPorte(Integer porte) throws AcademyException {
+        if (porte == null)
+            throw new AcademyException("Numero porte non caricato");
+        if (porte < MIN_NUM_PORTE || porte > MAX_NUM_PORTE)
+            throw new AcademyException("Numero porte non valido. Deve essere tra "+ MIN_NUM_PORTE+ " e "+  MAX_NUM_PORTE);
+        return porte;
+    }
+    
 	@Override
 	public void update(MacchinaReq req) throws AcademyException {
 		// TODO Auto-generated method stub
@@ -102,6 +118,8 @@ public class MacchinaImpl implements IMacchinaServices{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/*
 	@Override
 	public List<MacchinaDTO> find(Integer id, String targa, Integer numeroPorte, Integer cc, String categoria,
 			String colore, String marca, String alimentazione, String tipoVeicolo) throws AcademyException {
@@ -124,7 +142,7 @@ public class MacchinaImpl implements IMacchinaServices{
 		                .build())
 		        .collect(Collectors.toList());
 		
-	}
+	}*/
 
 	
 
