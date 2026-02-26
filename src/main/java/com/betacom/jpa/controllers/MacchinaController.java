@@ -103,9 +103,8 @@ public class MacchinaController {
         }
     }
 
-
-
     @GetMapping("/listaFiltrata")
+
     public ResponseEntity<Object> list(
     		@RequestParam(required=false) Integer id,
     		@RequestParam(required=false)String targa,
@@ -127,5 +126,9 @@ public class MacchinaController {
     		status = HttpStatus.BAD_REQUEST;
     	}
     	return ResponseEntity.status(status).body(obj);
+
     }
 }
+
+    	
+

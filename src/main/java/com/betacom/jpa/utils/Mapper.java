@@ -14,13 +14,16 @@ import com.betacom.jpa.dto.outputs.CategoriaDTO;
 import com.betacom.jpa.dto.outputs.ColoreDTO;
 import com.betacom.jpa.dto.outputs.MacchinaDTO;
 import com.betacom.jpa.dto.outputs.MarcaDTO;
+import com.betacom.jpa.dto.outputs.TipoVeicoloDTO;
 import com.betacom.jpa.dto.outputs.TipoSospensioneDTO;
 import com.betacom.jpa.models.Alimentazione;
 import com.betacom.jpa.models.Categoria;
 import com.betacom.jpa.models.Colore;
 import com.betacom.jpa.models.Macchina;
 import com.betacom.jpa.models.Marca;
+import com.betacom.jpa.models.TipoVeicolo;
 import com.betacom.jpa.models.TipoSospensione;
+
 
 public class Mapper {
 	public static AlimentazioneDTO buildAlimentazioneDTO(Alimentazione alim) {
@@ -109,11 +112,18 @@ public class Mapper {
                 .build();
     }
 
-    // Converte lista di Bici in lista di DTO.
+    
     public static List<BiciDTO> buildBiciDTO(List<Bici> biciList) {
         return biciList.stream()
                 .map(Mapper::buildBiciDTO)
                 .collect(Collectors.toList());
+    }
+    
+    public static TipoVeicoloDTO buildTipoVeicoloDTO(TipoVeicolo t) {
+        return TipoVeicoloDTO.builder()
+                .id(t.getId())
+               .veicolo(t.getVeicolo())
+               .build();
     }
     public static MacchinaDTO buildMacchinaDTO(Macchina macchina) {
  		if (macchina == null) return null;
