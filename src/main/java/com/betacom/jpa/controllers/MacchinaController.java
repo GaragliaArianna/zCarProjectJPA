@@ -57,8 +57,7 @@ public class MacchinaController {
 	    return ResponseEntity.status(status).body(r);
 	}
 	
-	@PostMapping("/listAll")
-    @GetMapping
+    @GetMapping("/listAll")
     public ResponseEntity<List<MacchinaDTO>> getAllMacchina() {
         try {
             List<MacchinaDTO> macchinaList = macchinaS.findAll();
@@ -103,10 +102,10 @@ public class MacchinaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
-}
 
 
-    @GetMapping("/list")
+
+    @GetMapping("/listaFiltrata")
     public ResponseEntity<Object> list(
     		@RequestParam(required=false) Integer id,
     		@RequestParam(required=false)String targa,
@@ -128,3 +127,5 @@ public class MacchinaController {
     		status = HttpStatus.BAD_REQUEST;
     	}
     	return ResponseEntity.status(status).body(obj);
+    }
+}
