@@ -56,7 +56,7 @@ public class TipoSospensioneController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<TipoSospensioneReq>> listAll() {
+    public ResponseEntity<List<TipoSospensioneDTO>> listAll() {
         return ResponseEntity.ok(service.findAll());
     }
 

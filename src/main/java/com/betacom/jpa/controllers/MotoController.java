@@ -2,6 +2,7 @@ package com.betacom.jpa.controllers;
 
 import java.util.List;
 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +20,7 @@ import com.betacom.jpa.services.interfaces.IMessaggioServices;
 
 import com.betacom.jpa.services.interfaces.IMotoServices;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody; 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

@@ -6,20 +6,15 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.betacom.jpa.controllers.AlimentazioneController;
 import com.betacom.jpa.dto.input.MacchinaReq;
-import com.betacom.jpa.dto.outputs.ColoreDTO;
 import com.betacom.jpa.dto.outputs.MacchinaDTO;
 import com.betacom.jpa.exceptions.AcademyException;
 import com.betacom.jpa.models.Macchina;
-import com.betacom.jpa.models.TipoVeicolo;
 import com.betacom.jpa.repositories.IMacchinaRepository;
-
 import com.betacom.jpa.services.interfaces.IMacchinaServices;
 import com.betacom.jpa.services.interfaces.IMessaggioServices;
 import com.betacom.jpa.utils.Mapper;
 import com.betacom.jpa.utils.VeicoloUtils;
-
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class MacchinaImpl implements IMacchinaServices{
 
-    private final AlimentazioneController alimentazioneController;
+
 	private final IMacchinaRepository macchinaR;
 
 	private final IMessaggioServices msgS;
@@ -39,7 +34,8 @@ public class MacchinaImpl implements IMacchinaServices{
     private static final int MIN_NUM_PORTE=2;
     private static final int MAX_NUM_PORTE=4;
     
-	
+
+
     @Transactional(rollbackFor = AcademyException.class)
     @Override
     public Integer create(MacchinaReq req) throws AcademyException {
@@ -84,11 +80,7 @@ public class MacchinaImpl implements IMacchinaServices{
         return porte;
     }
     
-	@Override
-	public void update(MacchinaReq req) throws AcademyException {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Transactional(rollbackFor = AcademyException.class)
 	@Override
@@ -115,11 +107,52 @@ public class MacchinaImpl implements IMacchinaServices{
 
 	@Override
 	public List<MacchinaDTO> findAll() throws AcademyException {
-		// TODO Auto-generated method stub
-		return null;
+		return Mapper.buildMacchinaDTO(macchinaR.findAll());
+
 	}
 	
-	/*
+	@Transactional(rollbackFor = AcademyException.class)
+	@Override
+	public void update(Integer id, MacchinaReq req) throws AcademyException {
+
+	    log.debug("update Macchina {}", id);
+
+	    Macchina macchina = macchinaR.findById(id)
+	            .orElseThrow(() -> new AcademyException("Macchina non trovata"));
+
+	    //campi non modificabili
+	    if (req.getTarga() != null)
+	        throw new AcademyException("La targa non può essere modificata");
+
+	    if (req.getIdTipoVeicolo() != null)
+	        throw new AcademyException("Il tipo veicolo non può essere modificato");
+
+	    //aggiornamento campi comuni
+	    try {
+	    	 veicoloUtils.updateVeicoloFromReq(macchina, req);
+	    }catch (Exception e) {
+            log.error("Errore in veicoloUtils.buildVeicoloFromReq: {}", e.getMessage(), e);
+            throw e; 
+        }
+	   
+
+	    //aggiornamento campi macchina
+	    if (req.getNumeroPorte() != null) {
+	        checkNumeroPorte(req.getNumeroPorte());
+	        macchina.setNumeroPorte(req.getNumeroPorte());
+	    }
+
+	    if (req.getCc() != null) {
+	        if (req.getCc() <= 0)
+	            throw new AcademyException("Cilindrata non valida");
+	        macchina.setCc(req.getCc());
+	    }
+
+	    macchinaR.save(macchina);
+	}
+
+	
+	
 	@Override
 	public List<MacchinaDTO> find(Integer id, String targa, Integer numeroPorte, Integer cc, String categoria,
 			String colore, String marca, String alimentazione, String tipoVeicolo) throws AcademyException {
@@ -142,7 +175,7 @@ public class MacchinaImpl implements IMacchinaServices{
 		                .build())
 		        .collect(Collectors.toList());
 		
-	}*/
+	}
 
 	
 

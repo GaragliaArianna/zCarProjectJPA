@@ -12,6 +12,7 @@ import com.betacom.jpa.models.Moto;
 public interface IMotoRepository extends JpaRepository<Moto, Integer>{
 
 	Optional<Moto> findByTarga(String targa);
+
 	
 	
 }

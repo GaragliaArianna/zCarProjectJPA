@@ -15,5 +15,6 @@ public interface IMotoServices {
 	void delete(Integer id) throws AcademyException;
 	MotoDTO findById(Integer id) throws Exception;
 	List<MotoDTO> findAll() throws AcademyException;
+	
 
 }
