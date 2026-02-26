@@ -6,29 +6,15 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.betacom.jpa.controllers.AlimentazioneController;
-import com.betacom.jpa.dto.input.BiciReq;
 import com.betacom.jpa.dto.input.MacchinaReq;
-import com.betacom.jpa.dto.outputs.BiciDTO;
-import com.betacom.jpa.dto.outputs.ColoreDTO;
 import com.betacom.jpa.dto.outputs.MacchinaDTO;
 import com.betacom.jpa.exceptions.AcademyException;
-import com.betacom.jpa.models.Bici;
 import com.betacom.jpa.models.Macchina;
-import com.betacom.jpa.models.TipoVeicolo;
-import com.betacom.jpa.repositories.IAlimentazioneRepository;
-import com.betacom.jpa.repositories.ICategoriaRepository;
-import com.betacom.jpa.repositories.IColoreRepository;
 import com.betacom.jpa.repositories.IMacchinaRepository;
-import com.betacom.jpa.repositories.IMarcaRepository;
-import com.betacom.jpa.repositories.ITipoFrenoRepository;
-import com.betacom.jpa.repositories.ITipoSospensioneRepository;
-import com.betacom.jpa.repositories.ITipoVeicoloRepository;
 import com.betacom.jpa.services.interfaces.IMacchinaServices;
 import com.betacom.jpa.services.interfaces.IMessaggioServices;
 import com.betacom.jpa.utils.Mapper;
 import com.betacom.jpa.utils.VeicoloUtils;
-
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
