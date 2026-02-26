@@ -112,4 +112,27 @@ public class MotoImpl implements IMotoServices{
 	            )
 	            .toList();
 	}
+
+		@Override
+	public List<MotoDTO> find(Integer id, String targa, Integer cc, String categoria, String colore, String marca,
+			String alimentazione, String tipoVeicolo) throws AcademyException {
+		List<Moto> lM = motoR.searchByFilter(id, targa, cc, categoria, 
+				colore, marca, alimentazione, tipoVeicolo);
+		return lM.stream()
+		        .map(m -> MotoDTO.builder()
+		                .idVeicolo(m.getId())
+		                .annoProduzione(m.getAnnoProduzione())
+		                .categoria(m.getCategoria() != null ? m.getCategoria().getCategoria() : null)
+		                .cc(m.getCc())
+		                .colore(m.getColore() != null ? m.getColore().getColore() : null)
+		                .marca(m.getMarca() != null ? m.getMarca().getMarca() : null)
+		                .modello(m.getModello())
+		                .numeroRuote(m.getNumeroRuote())
+		                .targa(m.getTarga())
+		                .tipoAlimentazione(m.getAlimentazione() != null ? m.getAlimentazione().getAlimentazione() : null)
+		                .tipoVeicolo(m.getTipoVeicolo() != null ? m.getTipoVeicolo().getVeicolo() : null)
+		                .build())
+		        .collect(Collectors.toList());
+		
+	}
 }
