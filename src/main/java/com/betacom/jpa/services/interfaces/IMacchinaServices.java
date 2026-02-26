@@ -15,6 +15,7 @@ public interface IMacchinaServices {
 	void delete(Integer id) throws AcademyException;
 	MacchinaDTO findById(Integer id) throws Exception;
 	List<MacchinaDTO> findAll() throws AcademyException;
+	/*
 	List<MacchinaDTO> find(
 			Integer id,
 	        String targa,
@@ -25,6 +26,6 @@ public interface IMacchinaServices {
 	        String marca,
 	        String alimentazione,
 	        String tipoVeicolo
-			)throws AcademyException;
+			)throws AcademyException;*/
 
 }

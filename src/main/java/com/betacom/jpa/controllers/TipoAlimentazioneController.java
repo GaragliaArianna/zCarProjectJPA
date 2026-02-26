@@ -17,7 +17,6 @@ public class TipoAlimentazioneController {
 
     private static final Logger log = LoggerFactory.getLogger(TipoAlimentazioneController.class);
 
-    @Autowired
     private IAlimentazioneServices service;
 
     @PostMapping("/create")
