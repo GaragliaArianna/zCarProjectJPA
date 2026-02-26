@@ -4,8 +4,6 @@ package com.betacom.jpa.services.implementations;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.betacom.jpa.dto.input.MotoReq;
@@ -49,7 +47,7 @@ public class MotoImpl implements IMotoServices{
 		return motoR.save(mot).getId();
 	}
 	
-	
+	 
 	@Transactional (rollbackFor = AcademyException.class)
 	@Override
 	public void update (MotoReq req) throws AcademyException {
@@ -101,16 +99,17 @@ public class MotoImpl implements IMotoServices{
 
 	@Override
 	public List<MotoDTO> findAll() throws AcademyException {
-		log.debug("findAll");
-		List<Moto> lM = motoR.findAll();
-		
-		return lM.stream()
-				.map(m-> MotoDTO.builder()
-						.id(m.getId())
-						.targa(m.getTarga())
-						.cc(m.getCc())
-						.build()
-						).collect(Collectors.toList());
+	    log.debug("findAll");
+
+	    List<Moto> lM = motoR.findAll();
+
+	    return lM.stream()
+	            .map(m -> (MotoDTO) MotoDTO.builder()
+	                    .id(m.getId())
+	                    .targa(m.getTarga())
+	                    .cc(m.getCc())
+	                    .build()
+	            )
+	            .toList();
 	}
-	
 }
