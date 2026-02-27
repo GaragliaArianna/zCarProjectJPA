@@ -1,11 +1,11 @@
 
     alter table bici 
        drop 
-       foreign key FKlvo5f3hpqqwcrhw1ca6reeak6;
+       foreign key FK4srh5s7l1jfus7vr69jdp8ufo;
 
     alter table bici 
        drop 
-       foreign key FK4srh5s7l1jfus7vr69jdp8ufo;
+       foreign key FKlvo5f3hpqqwcrhw1ca6reeak6;
 
     alter table bici 
        drop 

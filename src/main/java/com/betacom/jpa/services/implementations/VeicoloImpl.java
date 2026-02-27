@@ -10,6 +10,7 @@ import com.betacom.jpa.dto.outputs.MacchinaDTO;
 import com.betacom.jpa.dto.outputs.MotoDTO;
 import com.betacom.jpa.dto.outputs.VeicoloDTO;
 import com.betacom.jpa.dto.outputs.VeicoloFilterDTO;
+//import com.betacom.jpa.dto.outputs.VeicoloFilterDTO;
 import com.betacom.jpa.exceptions.AcademyException;
 import com.betacom.jpa.models.Bici;
 import com.betacom.jpa.models.Macchina;

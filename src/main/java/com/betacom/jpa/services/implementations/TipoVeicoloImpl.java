@@ -1,14 +1,17 @@
 package com.betacom.jpa.services.implementations;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.betacom.jpa.dto.input.ColoreReq;
 import com.betacom.jpa.dto.input.TipoVeicoloReq;
 import com.betacom.jpa.dto.outputs.TipoVeicoloDTO;
 import com.betacom.jpa.exceptions.AcademyException;
+import com.betacom.jpa.models.Colore;
 import com.betacom.jpa.models.TipoVeicolo;
 import com.betacom.jpa.repositories.ITipoVeicoloRepository;
 import com.betacom.jpa.services.interfaces.ITipoVeicoloService;
@@ -37,20 +40,18 @@ public class TipoVeicoloImpl implements ITipoVeicoloService {
     }
 
     @Transactional(rollbackFor = AcademyException.class)
-    public void update(Integer id, TipoVeicoloReq req) throws AcademyException {
-        log.debug("update TipoVeicolo {}", id);
-
-        if (id == null)
-            throw new AcademyException("ID tipo veicolo non fornito");
-
-        TipoVeicolo tv = tipoVeicoloR.findById(id)
-                .orElseThrow(() -> new AcademyException("Tipo veicolo non trovato"));
-
-        if (req.getVeicolo() != null && !req.getVeicolo().isBlank())
-            tv.setVeicolo(req.getVeicolo());
-
-        tipoVeicoloR.save(tv);
-    }
+	@Override
+	public void update(TipoVeicoloReq req) throws AcademyException {
+		log.debug("update {}");
+		Optional<TipoVeicolo> t = tipoVeicoloR.findById(req.getId());
+		if(t.isEmpty())
+			throw new AcademyException("TipoVeicolo non trovato");
+		TipoVeicolo tipo = t.get();
+		if(req.getVeicolo()!=null)
+			tipo.setVeicolo(req.getVeicolo());
+		tipoVeicoloR.save(tipo);
+		
+	}
 
     @Transactional(rollbackFor = AcademyException.class)
     public void delete(Integer id) throws AcademyException {
@@ -86,4 +87,6 @@ public class TipoVeicoloImpl implements ITipoVeicoloService {
                 .veicolo(tv.getVeicolo())
                 .build();
     }
+
+
 }

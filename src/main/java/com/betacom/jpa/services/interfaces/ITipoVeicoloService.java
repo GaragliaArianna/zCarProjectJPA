@@ -12,11 +12,11 @@ public interface ITipoVeicoloService {
 
     Integer create(TipoVeicoloReq req) throws AcademyException;
 
-    void update(Integer id, TipoVeicoloReq req) throws AcademyException;
-
     void delete(Integer id) throws AcademyException;
 
     TipoVeicoloDTO findById(Integer id) throws AcademyException;
 
     List<TipoVeicoloDTO> findAll() throws AcademyException;
+
+	void update(TipoVeicoloReq req) throws AcademyException;
 }

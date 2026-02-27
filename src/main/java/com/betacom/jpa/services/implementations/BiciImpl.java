@@ -101,7 +101,7 @@ public class BiciImpl implements IBiciServices {
             bici.setNumeroMarce(req.getNumeroMarce());
 
         if (req.getPieghevole() != null)
-            bici.setPiegevole(req.getPieghevole());
+            bici.setPieghevole(req.getPieghevole());
 
         if (req.getNumeroRuote() != null)
             bici.setNumeroRuote(req.getNumeroRuote());

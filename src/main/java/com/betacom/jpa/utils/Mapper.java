@@ -14,14 +14,18 @@ import com.betacom.jpa.dto.outputs.CategoriaDTO;
 import com.betacom.jpa.dto.outputs.ColoreDTO;
 import com.betacom.jpa.dto.outputs.MacchinaDTO;
 import com.betacom.jpa.dto.outputs.MarcaDTO;
+import com.betacom.jpa.dto.outputs.MotoDTO;
 import com.betacom.jpa.dto.outputs.TipoVeicoloDTO;
+import com.betacom.jpa.dto.outputs.VeicoloDTO;
 import com.betacom.jpa.dto.outputs.TipoSospensioneDTO;
 import com.betacom.jpa.models.Alimentazione;
 import com.betacom.jpa.models.Categoria;
 import com.betacom.jpa.models.Colore;
 import com.betacom.jpa.models.Macchina;
 import com.betacom.jpa.models.Marca;
+import com.betacom.jpa.models.Moto;
 import com.betacom.jpa.models.TipoVeicolo;
+import com.betacom.jpa.models.Veicolo;
 import com.betacom.jpa.models.TipoSospensione;
 
 
@@ -108,7 +112,7 @@ public class Mapper {
                 .numeroMarce(bici.getNumeroMarce())
                 .tipoFreno(bici.getTipoFreno() != null ? bici.getTipoFreno().getTipo() : null)
                 .tipoSospensione(bici.getTipoSospensione() != null ? bici.getTipoSospensione().getSospensione() : null)
-                .pieghevole(bici.getPiegevole())
+                .pieghevole(bici.getPieghevole())
                 .build();
     }
 

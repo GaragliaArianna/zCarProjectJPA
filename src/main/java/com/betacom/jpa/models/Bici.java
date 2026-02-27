@@ -41,7 +41,7 @@ public class Bici extends Veicolo{
 			name="pieghevole",
 			nullable = false
 			)
-    private Boolean piegevole;
+    private Boolean pieghevole;
 
 
 }

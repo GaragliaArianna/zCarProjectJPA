@@ -95,14 +95,14 @@
        add constraint UKgxt0l1uuapmsn7rybuq808dsr unique (targa);
 
     alter table bici 
-       add constraint FKlvo5f3hpqqwcrhw1ca6reeak6 
-       foreign key (id_tipo_sospensione) 
-       references sospensioni (id_sospensione);
-
-    alter table bici 
        add constraint FK4srh5s7l1jfus7vr69jdp8ufo 
        foreign key (id_tipo_freno) 
        references freni (id);
+
+    alter table bici 
+       add constraint FKlvo5f3hpqqwcrhw1ca6reeak6 
+       foreign key (id_tipo_sospensione) 
+       references sospensioni (id_sospensione);
 
     alter table bici 
        add constraint FKra4pq79y6t94qnygjmhto1d2f 
