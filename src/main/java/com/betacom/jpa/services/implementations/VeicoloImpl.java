@@ -10,7 +10,6 @@ import com.betacom.jpa.dto.outputs.MacchinaDTO;
 import com.betacom.jpa.dto.outputs.MotoDTO;
 import com.betacom.jpa.dto.outputs.VeicoloDTO;
 import com.betacom.jpa.dto.outputs.VeicoloFilterDTO;
-//import com.betacom.jpa.dto.outputs.VeicoloFilterDTO;
 import com.betacom.jpa.exceptions.AcademyException;
 import com.betacom.jpa.models.Bici;
 import com.betacom.jpa.models.Macchina;
@@ -39,27 +38,29 @@ public class VeicoloImpl implements IVeicoloServices{
 	@Override
 	public List<VeicoloDTO> find(VeicoloFilterDTO filter) throws AcademyException {
 		log.debug("find {}");
+		log.debug("filter: id={}, modello={}, annoProduzione={}", 
+			    filter.getId(), filter.getModello(), filter.getAnnoProduzione());
 	    try {
 
 	        List<Veicolo> veicoli = veiR.searchByFilter(
-	                filter.getId(),
-	                filter.getModello(),
-	                filter.getAnnoProduzione(),
-	                filter.getNumeroRuote(),
-	                filter.getCategoria(),
-	                filter.getColore(),
-	                filter.getMarca(),
-	                filter.getAlimentazione(),
-	                filter.getTipoVeicolo(),
-	                filter.getTarga(),
-	                filter.getNumeroPorte(),
-	                filter.getCilindrataAuto(),
-	                filter.getCilindrataMoto(),
-	                filter.getTargaMoto(),
-	                filter.getNumeroMarce(),
-	                filter.getPieghevole(),
-	                filter.getSospensione(),
-	                filter.getFreno()
+	        		filter.getId(),
+	        		filter.getModello(),
+	        		filter.getAnnoProduzione(),
+	        		filter.getNumeroRuote(),
+	        		filter.getCategoria(),
+	        		filter.getColore(),
+	        		filter.getMarca(),
+	        		filter.getAlimentazione(),
+	        		filter.getTipoVeicolo(),
+	        		filter.getTarga(),
+	        		filter.getNumeroPorte(),
+	        		filter.getCilindrataAuto(),
+	        		filter.getTargaMoto(),      // ← prima targaMoto
+	        		filter.getCilindrataMoto(), // ← poi cilindrataMoto
+	        		filter.getNumeroMarce(),
+	        		filter.getPieghevole(),
+	        		filter.getSospensione(),
+	        		filter.getFreno()
 	        );
 	        
 	        return Mapper.buildVeicoloDTO(veicoli);
