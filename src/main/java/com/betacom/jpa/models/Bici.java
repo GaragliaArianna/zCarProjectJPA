@@ -35,7 +35,7 @@ public class Bici extends Veicolo{
 	
 	@ManyToOne
 	@JoinColumn(name = "id_tipo_sospensione", nullable = false)
-    private TipoSospensione TipoSospensione; 
+    private TipoSospensione tipoSospensione; 
 	
 	@Column (
 			name="pieghevole",

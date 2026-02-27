@@ -78,7 +78,7 @@ public class BiciImpl implements IBiciServices {
 
         // ---- BICI ----
         bici.setNumeroMarce(req.getNumeroMarce());
-        bici.setPiegevole(req.getPieghevole());
+        bici.setPieghevole(req.getPieghevole());
         bici.setTipoFreno(tf);
         bici.setTipoSospensione(ts);
 
