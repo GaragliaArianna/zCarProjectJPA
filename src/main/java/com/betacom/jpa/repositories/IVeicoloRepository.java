@@ -26,10 +26,10 @@ public interface IVeicoloRepository extends JpaRepository<Veicolo, Integer>{
 	        @Param("targa") String targa,
 	        @Param("numeroPorte") Integer numeroPorte,
 	        @Param("cilindrataAuto") Integer cilindrataAuto,
-
-	        // Moto
-	        @Param("cilindrataMoto") Integer cilindrataMoto,
+	        
+	        //Moto
 	        @Param("targaMoto") String targaMoto,
+	        @Param("cilindrataMoto") Integer cilindrataMoto,
 
 	        // Bici
 	        @Param("numeroMarce") Integer numeroMarce,
