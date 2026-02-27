@@ -20,6 +20,7 @@ public class TipoSospensioneController {
 
     private static final Logger log = LoggerFactory.getLogger(TipoSospensioneController.class);
 
+    @Autowired
     private ITipoSospensioneService service;
 
     @PostMapping("/create")

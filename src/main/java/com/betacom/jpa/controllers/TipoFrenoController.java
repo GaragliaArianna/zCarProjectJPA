@@ -18,6 +18,7 @@ public class TipoFrenoController {
 
     private static final Logger log = LoggerFactory.getLogger(TipoFrenoController.class);
 
+    @Autowired
     private ITipoFrenoService service;
 
     @PostMapping("/create")
